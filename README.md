@@ -4,7 +4,7 @@ This hardhat project is the smart contract for the decentralized application cal
 
 ## Getting started
 
-- Have node installed in your computer. Refer to `https://nodejs.org/`
+- Have node installed in your computer. Refer to https://nodejs.org/
 - Install yarn `npm install --global yarn`
 
 - Compile the project ```yarn hardhat compile```
