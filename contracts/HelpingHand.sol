@@ -11,7 +11,7 @@ error HelpingHand__TimeNotYetElapsed();
 
 /** @title A helping hand contract
  * @author Joshua Iluma
- * @notice This contract users donate to people in need
+ * @notice This contract allows users donate to people in need
  * @dev It implements price feed as our library
  */
 contract HelpingHand {
