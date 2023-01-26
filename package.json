@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test": "yarn hardhat test",
-    "test:staging": "yarn hardhat test --network goreli",
+    "test:staging": "yarn hardhat test --network goerli",
     "lint": "yarn solhint 'contracts/*.sol'",
     "lint:fix": "yarn solhint 'contracts/*.sol' --fix",
     "coverage":"yarn hardhat coverage"

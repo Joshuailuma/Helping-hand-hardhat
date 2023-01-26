@@ -1,19 +1,21 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("hardhat-deploy")
 require("dotenv").config()
+require("@nomiclabs/hardhat-etherscan");
 
 GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || ""
 PRIVATE_KEY = process.env.PRIVATE_KEY || ""
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
+const mnemonic = process.env.mnemonic
 
 module.exports = {
   defaultNetwork: "hardhat",
   networks:{
   goerli: {
     url: GOERLI_RPC_URL,
-    accounts: [PRIVATE_KEY],
+    accounts: { mnemonic: mnemonic},
     chainId: 5,
-    blockConfirmations: 6,
+    blockConfirmations: 5,
 },
 hardhat: {
   chainId: 31337,
@@ -27,7 +29,7 @@ etherscan: {
 },
 
 gasReporter: {
-  enabled: true,
+  enabled: false,
   currency: "USD",
   outputFile: "gas-report.txt",
   noColors: true,

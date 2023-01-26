@@ -8,17 +8,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
 
-    let ethUsdPriceFeedAddress
-    if (chainId == 31337) {
-        const ethUsdAggregator = await deployments.get("MockV3Aggregator")
-        ethUsdPriceFeedAddress = ethUsdAggregator.address
-    } else {
-        ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
-    }
-    log("----------------------------------------------------")
-    log("Deploying HelpingHand and waiting for confirmations...")
-
-const args = [ethUsdPriceFeedAddress]
+const args = []
 //What happens when we want to change chains
 // Use mock when going through localhost or hardhat
 const helpingHand = await deploy("HelpingHand", {

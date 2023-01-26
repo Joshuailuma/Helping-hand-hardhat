@@ -1,8 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.7 <0.9.0;
-// To connect to our chainlink interface and be able to get the ABI and call some functions
-import "./PriceConverter.sol";
-import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 // For error message
 error HelpingHand__NotOwner();
@@ -15,9 +12,6 @@ error HelpingHand__TimeNotYetElapsed();
  * @dev It implements price feed as our library
  */
 contract HelpingHand {
-    // Type declaration
-    using PriceConverter for uint256;
-
     // State variables
     struct Details {
         uint256 amountOwned;
@@ -29,12 +23,10 @@ contract HelpingHand {
     mapping(address => Details) private s_details;
 
     // We must convert minimunUsd from Eth to real usd
-    uint256 public constant MINIMUM_USD = 1 * 1e18; // How solidity will treat 50ETH
+    uint256 public constant MINIMUM_USD = 0.000000000000000001 * 1e18; // How solidity will treat 50ETH
 
     // Address of the i_owner of the contract
     address private i_owner; //Since it is set once
-
-    AggregatorV3Interface private s_priceFeed;
 
     // This code(a modifier) is called first before the rest of the function it is present in
     modifier onlyi_Owner() {
@@ -60,22 +52,17 @@ contract HelpingHand {
     // We are passing in the pricefeed address that get saved as aglobal variable
     // We are doing this because the address may change according to the different network
 
-    constructor(address s_priceFeedAddress) {
+    constructor() {
         i_owner = msg.sender;
-        // We will use the s_priceFeed address in our converter
-        s_priceFeed = AggregatorV3Interface(s_priceFeedAddress);
     }
 
     /**
      * @notice This funds the account of the contract. Anyone can fund it
      * Payable means the function can hold money
      */
-    function fund(address receiver) public payable {
+    function fund(address receiver) external payable {
         // Least money someone can at least send 1 Eth to it
-        require(
-            msg.value.getConversionRate(s_priceFeed) > MINIMUM_USD,
-            "Didn't send enough"
-        );
+        require(msg.value > MINIMUM_USD, "Didn't send enough");
 
         //Increase the amount the receiver has
         s_details[receiver].amountOwned += msg.value;
@@ -106,18 +93,15 @@ contract HelpingHand {
         require(callSuccess);
     }
 
-    /**
-     * @notice Get the address of our converter. It varies btwn testnet and mainnet
-     */
-    function getPriceFeed() public view returns (AggregatorV3Interface) {
-        return s_priceFeed;
-    }
-
     function getAmountSoFar(address anOwner) public view returns (uint) {
         return s_details[anOwner].amountOwned;
     }
 
-    /** @notice Returns the person who deployed the contract
+    function getEndTime(address anOwner) public view returns (uint) {
+        return s_details[anOwner].endTime;
+    }
+
+    /** @notice Returns the person who deployed the project
      */
     function getOwner(address anOwner) public view returns (string memory) {
         if (s_details[anOwner].endTime == 0) {

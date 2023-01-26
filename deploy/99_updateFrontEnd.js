@@ -30,7 +30,9 @@ async function updateAbi() {
 
 async function updateContractAddress() {
     //Update contract address object
+    console.log("Hi");
     const chainId = network.config.chainId.toString() //Localhost is 31337
+    console.log(chainId);
     console.log(`GOt chain id ${chainId}`);
     const helpingHand = await ethers.getContract("HelpingHand") //Get the contract
     const contractAddresses = JSON.parse(fs.readFileSync(frontEndContractsFile, "utf8")) //Read the networkMapping file in frontend

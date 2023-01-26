@@ -1,4 +1,4 @@
-//We want the contract to show verified on etherscan
+//This boilerplate code verifies the contract on etherscan
 const { run } = require("hardhat")
 
 const verify = async (contractAddress, args) => {
