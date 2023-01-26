@@ -21,7 +21,7 @@ To run the scripts `yarn hardhat run/scripts/fund.js --network locahost`
 
 ## Contract functions
 
-`startProject(address receiver)`
+`startProject(address newowner, uint256 endTime)`
 
 - Starts a Helping hand project
 - Arguments: address newowner, uint256 endTime
