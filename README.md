@@ -2,11 +2,11 @@
 
 This hardhat project is the smart contract for the decentralized application [`Helping hand`](https://github.com/Joshuailuma/Helping-Hand).
 
-The contract is deployed to the Goerli Testnet with address [0xaD39BB20C2C3277E4621647feA05aCc8C4c0475c](https://goerli.etherscan.io/address/0xaD39BB20C2C3277E4621647feA05aCc8C4c0475c)
+The contract is deployed to Goerli Testnet with address [0xaD39BB20C2C3277E4621647feA05aCc8C4c0475c](https://goerli.etherscan.io/address/0xaD39BB20C2C3277E4621647feA05aCc8C4c0475c)
 
 ## Getting started
 
-- Have node installed in your computer. Refer to https://nodejs.org/
+- Have Node Js installed in your computer. Refer to https://nodejs.org/
 - Install yarn `npm install --global yarn`
 
 - Compile the project `yarn hardhat compile`
