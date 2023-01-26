@@ -21,37 +21,37 @@ To run the scripts `yarn hardhat run/scripts/fund.js --network locahost`
 
 ## Contract functions
 
-`startProject`
+`startProject(address receiver)`
 
 - Starts a Helping hand project
 - Arguments: address newowner, uint256 endTime
 - `newowner` = expected owner of the project
 - `endTime` = number of days the project will run for. Withdrawal can't be made during this period
 
-`fund`
+`fund(address receiver)`
 
 - Funds/donates to a particular project
 - Arguments: address receiver
 - `receiver` = receiver of the donation/fund
 
-`withdraw`
+`withdraw()`
 
 - Withdraws the funds from a project to the caller's account after the project period has elapsed
 - Arguments: None
 
-`getAmountSoFar`
+`getAmountSoFar(address anOwner)`
 
 - Gets the amount a project has gotten so far
-- Arguments: address owner
-- `owner` = owner of the project
+- Arguments: address anOwner
+- `anOwner` = owner of the project
 
-`getEndTime`
+`getEndTime(address anOwner)`
 
 - Gets the number of days the project will run for
 - Arguments: address anOwner
 - `owner` = owner of the project
 
-`getOwner`
+`getOwner(address anOwner)`
 
 - Checks if an address has a project
 - Arguments: address anOwner
